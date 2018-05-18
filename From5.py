@@ -30,7 +30,7 @@ class From5(wx.Frame):
     def InitUI(self):
         self.panel = wx.Panel(self)
         self.panel.Bind(wx.EVT_ERASE_BACKGROUND, self.OnEraseBack)
-        font = wx.Font(14, wx.DEFAULT, wx.NORMAL, wx.NORMAL, True)
+        font = wx.Font(14, wx.DEFAULT, wx.NORMAL, wx.NORMAL, False)
         oneButton = wx.Button(self.panel, -1, u'导入评估数据', pos=(60, 30), size=(200, 50))
         oneButton.SetForegroundColour(self.themeColor)
         oneButton.SetBackgroundColour('white')
@@ -111,7 +111,14 @@ class From5(wx.Frame):
             if x == 1:
                 x = 2
             else:
-                dlg = wx.MessageDialog(None, u"测试结果为："+index.title(), u"信息提示", wx.YES_DEFAULT)
+                content = ""
+                if(index.title() == 'L'):
+                    content = '安全'
+                elif index.title() == 'M':
+                    content = '正常'
+                else:
+                    content = '危险'
+                dlg = wx.MessageDialog(None, u"测试结果为："+content, u"信息提示", wx.YES_DEFAULT)
                 if dlg.ShowModal() == wx.ID_YES:
                     dlg.Destroy()
     def fiveEvent(self, event):

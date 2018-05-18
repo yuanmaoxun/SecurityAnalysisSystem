@@ -13,7 +13,7 @@ class From3(wx.Frame):
             self.UpdateUI(2)
     def InitUI(self):
         win = wx.Panel(self)
-        font = wx.Font(14, wx.DEFAULT, wx.NORMAL, wx.NORMAL, True)
+        font = wx.Font(14, wx.DEFAULT, wx.NORMAL, wx.NORMAL, False)
         #self.xxtext = wx.TextCtrl(win, wx.ID_ANY, pos=(110, 50), size=(350, 30))
         kernelList = ['linear', 'poly', 'rbf', 'sigmoid', 'precomputed']
         judgeList = ['是', '否']

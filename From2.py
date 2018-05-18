@@ -36,7 +36,12 @@ class From2(wx.Frame):
         panel = wx.Panel(self)
         panel.Bind(wx.EVT_ERASE_BACKGROUND, self.OnEraseBack)
 
-        font = wx.Font(14, wx.DEFAULT, wx.NORMAL, wx.NORMAL, True)
+        font = wx.Font(14, wx.DEFAULT, wx.NORMAL, wx.NORMAL, False)
+        font1 = wx.Font(20, wx.DEFAULT, wx.NORMAL, wx.NORMAL, False)
+        text = wx.StaticText(panel, pos=(60, 60), label='基于支持向量机的安全态势评估系统')
+        text.SetFont(font1)
+        text.SetBackgroundColour("#b3c6b0")
+
         oneButton = wx.Button(panel, -1, u'配置参数', pos=(120, 145), size=(200, 60))
         oneButton.SetBackgroundColour('white')
         oneButton.SetForegroundColour(self.themeColor)
@@ -71,7 +76,7 @@ class From2(wx.Frame):
     def thereEvent(self, event):
         self.UpdateUI(5)
     def fourEvent(self, event):
-        dlg = wx.MessageDialog(None, u"具体操作方法请参考《基于SVM的安全态势评估系统操作手册》!", u"信息提示", wx.YES_DEFAULT)
+        dlg = wx.MessageDialog(None, u"具体操作方法请参考《基于支持向量机的安全态势评估系统》!", u"信息提示", wx.YES_DEFAULT)
         if dlg.ShowModal() == wx.ID_YES:
             dlg.Destroy()
 
