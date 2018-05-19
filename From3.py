@@ -15,7 +15,7 @@ class From3(wx.Frame):
         win = wx.Panel(self)
         font = wx.Font(14, wx.DEFAULT, wx.NORMAL, wx.NORMAL, False)
         #self.xxtext = wx.TextCtrl(win, wx.ID_ANY, pos=(110, 50), size=(350, 30))
-        kernelList = ['linear', 'poly', 'rbf', 'sigmoid', 'precomputed']
+        kernelList = ['linear', 'poly', 'rbf']
         judgeList = ['是', '否']
 
         text1 = wx.StaticText(win, pos=(10, 25), label='请选择核函数:')

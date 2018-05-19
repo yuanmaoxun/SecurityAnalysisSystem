@@ -6,6 +6,10 @@ import tkinter as tk
 from tkinter import filedialog
 from Data import *
 import pandas as pd
+
+# 解决图表中文乱码问题
+plt.rcParams['font.sans-serif'] = ['SimHei']  # 中文字体设置
+plt.rcParams['axes.unicode_minus'] = False
 class From5(wx.Frame):
     def __init__(self, parent=None, id=-1, UpdateUI=None):
         wx.Frame.__init__(self, parent, id, title='测试模型', size=(920, 550))
@@ -70,12 +74,11 @@ class From5(wx.Frame):
             if dlg.ShowModal() == wx.ID_YES:
                 dlg.Destroy()
     def twoEvent(self, event):
+
         df1 = pd.read_csv(Data.c_fath, encoding='utf-8')
         df1.head()
         X1 = df1.ix[:, :Data.colsize]
         y_pred = Data.clf.predict(X1)
-        x = []
-        y = []
         plt.figure()
         i=1
         for value in y_pred:
@@ -83,19 +86,19 @@ class From5(wx.Frame):
                 plt.bar(i, 0.5,color='blue', width=0.4, alpha=0.3)
                 #plt.hlines(0.5, 1, i, colors="blue", linestyles="dashed")
             elif(value=="H"):
-                plt.bar(i, 0.8, color='red', width=0.4, alpha=0.3)
+                plt.bar(i, 0.8, color='green', width=0.4, alpha=0.3)
                 #plt.hlines(0.8, 1, i, colors="red", linestyles="dashed")
             elif(value=="L"):
-                plt.bar(i, 0.2, color='green', width=0.4, alpha=0.3)
+                plt.bar(i, 0.2, color='red', width=0.4, alpha=0.3)
                 #plt.hlines(0.2, 1, i, colors="green", linestyles="dashed")
             i=i+1
         scale_ls = [0,0.2,0.5,0.8]
-        index_ls = ['None','Safe', 'Nomal', 'Danger']
+        index_ls = ['无','低', '中', '高']
         plt.yticks(scale_ls,index_ls)
         #plt.bar(x,y,width=0.4,alpha=0.3)
-        plt.title("Result")
-        plt.xlabel("Groups")
-        plt.ylabel("Grade")
+        plt.title("测试结果")
+        plt.xlabel("组别")
+        plt.ylabel("安全性水平")
         plt.savefig("easyplot.png")
         image = wx.Image('easyplot.png', wx.BITMAP_TYPE_PNG)
         temp = image.ConvertToBitmap()
@@ -106,21 +109,28 @@ class From5(wx.Frame):
 
     def fourEvent(self, event):
         y_pred = Data.clf.predict(Data.s_X)
-        x = 1;
-        for index in y_pred:
-            if x == 1:
-                x = 2
-            else:
-                content = ""
-                if(index.title() == 'L'):
-                    content = '安全'
-                elif index.title() == 'M':
-                    content = '正常'
-                else:
-                    content = '危险'
-                dlg = wx.MessageDialog(None, u"测试结果为："+content, u"信息提示", wx.YES_DEFAULT)
-                if dlg.ShowModal() == wx.ID_YES:
-                    dlg.Destroy()
+        plt.figure()
+
+        for value in y_pred:
+            if (value == "M"):
+                plt.bar(1, 0.5, color='blue', width=0.4, alpha=0.3)
+                # plt.hlines(0.5, 1, i, colors="blue", linestyles="dashed")
+            elif (value == "H"):
+                plt.bar(1, 0.8, color='green', width=0.4, alpha=0.3)
+                # plt.hlines(0.8, 1, i, colors="red", linestyles="dashed")
+            elif (value == "L"):
+                plt.bar(1, 0.2, color='red', width=0.4, alpha=0.3)
+        scaley_ls = [0, 0.2, 0.5, 0.8]
+        indey_ls = ['无','低', '中', '高']
+        scalex_ls = [1]
+        index_ls = ['1']
+        plt.yticks(scaley_ls, indey_ls)
+        plt.xticks(scalex_ls, index_ls)
+        # plt.bar(x,y,width=0.4,alpha=0.3)
+        plt.title("测试结果")
+        plt.xlabel("组别")
+        plt.ylabel("安全性水平")
+        plt.show()
     def fiveEvent(self, event):
         self.UpdateUI(2)
 

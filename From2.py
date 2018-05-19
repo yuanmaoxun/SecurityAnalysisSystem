@@ -2,16 +2,6 @@
 import wx
 import sys
 class From2(wx.Frame):
-    C = 1.0
-    kernel = "rbf"
-    degree = 2
-    gamma = 1
-    coef0 = 0.0
-    probability = False
-    shrinking = True
-    tol = 0.001
-    cache_size = 200
-    max_iter = -1
     def __init__(self, parent=None, id=-1, UpdateUI=None):
         wx.Frame.__init__(self, parent, id, title='安全态势评估系统', size=(850, 550))
         self.Centre()
@@ -37,10 +27,13 @@ class From2(wx.Frame):
         panel.Bind(wx.EVT_ERASE_BACKGROUND, self.OnEraseBack)
 
         font = wx.Font(14, wx.DEFAULT, wx.NORMAL, wx.NORMAL, False)
-        font1 = wx.Font(20, wx.DEFAULT, wx.NORMAL, wx.NORMAL, False)
-        text = wx.StaticText(panel, pos=(60, 60), label='基于支持向量机的安全态势评估系统')
-        text.SetFont(font1)
-        text.SetBackgroundColour("#b3c6b0")
+        #font1 = wx.Font(20, wx.DEFAULT, wx.NORMAL, wx.NORMAL, False)
+        #text = wx.StaticText(panel, pos=(60, 60), label='基于支持向量机的安全态势评估系统')
+        #text.SetFont(font1)
+        #text.SetBackgroundColour("#b3c6b0")
+        image = wx.Image('title.png', wx.BITMAP_TYPE_PNG)
+        temp = image.ConvertToBitmap()
+        wx.StaticBitmap(panel, bitmap=temp, pos=(20, 60))
 
         oneButton = wx.Button(panel, -1, u'配置参数', pos=(120, 145), size=(200, 60))
         oneButton.SetBackgroundColour('white')
@@ -76,7 +69,7 @@ class From2(wx.Frame):
     def thereEvent(self, event):
         self.UpdateUI(5)
     def fourEvent(self, event):
-        dlg = wx.MessageDialog(None, u"具体操作方法请参考《基于支持向量机的安全态势评估系统》!", u"信息提示", wx.YES_DEFAULT)
+        dlg = wx.MessageDialog(None, u"具体操作方法请参考《基于支持向量机的安全态势评估系统参考手册》!", u"信息提示", wx.YES_DEFAULT)
         if dlg.ShowModal() == wx.ID_YES:
             dlg.Destroy()
 

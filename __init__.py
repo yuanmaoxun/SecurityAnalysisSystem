@@ -6,7 +6,7 @@ class MainAPP(wx.App):
 
     def OnInit(self):
         self.manager = FrameManager.GuiManager(self.UpdateUI)
-        self.frame = self.manager.GetFrame(0)
+        self.frame = self.manager.GetFrame(2)
         self.frame.Show()
         return True
 
