@@ -99,8 +99,8 @@ class From5(wx.Frame):
         plt.title("测试结果")
         plt.xlabel("组别")
         plt.ylabel("安全性水平")
-        plt.savefig("easyplot.png")
-        image = wx.Image('easyplot.png', wx.BITMAP_TYPE_PNG)
+        plt.savefig("groupplot.png")
+        image = wx.Image('groupplot.png', wx.BITMAP_TYPE_PNG)
         temp = image.ConvertToBitmap()
         wx.StaticBitmap(parent=self.panel, bitmap=temp,pos=(300, 5))
     def thereEvent(self, event):
@@ -130,7 +130,10 @@ class From5(wx.Frame):
         plt.title("测试结果")
         plt.xlabel("组别")
         plt.ylabel("安全性水平")
-        plt.show()
+        plt.savefig("oneplot.png")
+        image = wx.Image('oneplot.png', wx.BITMAP_TYPE_PNG)
+        temp = image.ConvertToBitmap()
+        wx.StaticBitmap(parent=self.panel, bitmap=temp, pos=(300, 5))
     def fiveEvent(self, event):
         self.UpdateUI(2)
 
