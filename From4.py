@@ -71,7 +71,7 @@ class From4(wx.Frame):
         X = df.ix[:, :Data.colsize]
         Y = np.array(df.ix[:, Data.colsize]).astype(str)
         Data.clf = SVC(C=Data.C, kernel=Data.kernel, degree=Data.degree, gamma=Data.gamma, coef0=Data.coef0,
-                       probability=Data.probability, shrinking=Data.shrinking, tol=Data.tol,
+                       probability=False, shrinking=False, tol=Data.tol,
                        cache_size=Data.cache_size,class_weight=None,verbose=True, max_iter=Data.max_iter,random_state=None, decision_function_shape="ovo")
         Data.clf.fit(X, Y)
         dlg = wx.MessageDialog(None, u"分析完成！", u"信息提示", wx.YES_DEFAULT)

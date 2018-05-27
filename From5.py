@@ -103,6 +103,7 @@ class From5(wx.Frame):
         image = wx.Image('groupplot.png', wx.BITMAP_TYPE_PNG)
         temp = image.ConvertToBitmap()
         wx.StaticBitmap(parent=self.panel, bitmap=temp,pos=(300, 5))
+
     def thereEvent(self, event):
         app = MyCollectApp()
         app.mainloop()

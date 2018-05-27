@@ -3,7 +3,7 @@ import wx
 from Data import *
 class From3(wx.Frame):
     def __init__(self, parent=None, id=-1, UpdateUI=None):
-        wx.Frame.__init__(self, parent, id, title='配置参数', size=(600, 370))
+        wx.Frame.__init__(self, parent, id, title='配置参数', size=(600, 320))
         self.Centre()
         self.themeColor='#333333'
         self.UpdateUI = UpdateUI
@@ -32,29 +32,31 @@ class From3(wx.Frame):
 
         text7 = wx.StaticText(win, pos=(10, 85), label='核函数的独立项c:')
         self.coef0text = wx.TextCtrl(win, wx.ID_ANY,value="0.0", pos=(150, 80), size=(100, 20))
-
+        '''
         text8 = wx.StaticText(win, pos=(300, 85), label='启用概率估计:')
         self.probatext = wx.ComboBox(win, -1, value="否", pos=(440, 80), size=(100, 20), choices=judgeList,style=wx.CB_DROPDOWN)
 
         text9 = wx.StaticText(win, pos=(10, 115), label='启发式收缩方式:')
         self.shrinktext = wx.ComboBox(win, -1, value = "否", pos=(150, 110), size=(100, 20), choices = judgeList, style = wx.CB_DROPDOWN)
+        '''
+        text10 = wx.StaticText(win, pos=(300, 85), label='误差精度:')
+        #self.toltext = wx.TextCtrl(win, wx.ID_ANY,value="0.001", pos=(440, 110), size=(100, 20))
+        self.toltext = wx.TextCtrl(win, wx.ID_ANY, value="0.001", pos=(440, 80), size=(100, 20))
 
-        text10 = wx.StaticText(win, pos=(300, 115), label='误差精度:')
-        self.toltext = wx.TextCtrl(win, wx.ID_ANY,value="0.001", pos=(440, 110), size=(100, 20))
+        text11 = wx.StaticText(win, pos=(10, 115), label='训练的内存:')
+        #self.cachesizetext = wx.TextCtrl(win, wx.ID_ANY,value="200", pos=(150, 140), size=(100, 20))
+        self.cachesizetext = wx.TextCtrl(win, wx.ID_ANY, value="200", pos=(150, 110), size=(100, 20))
 
-        text11 = wx.StaticText(win, pos=(10, 145), label='训练的内存:')
-        self.cachesizetext = wx.TextCtrl(win, wx.ID_ANY,value="200", pos=(150, 140), size=(100, 20))
+        text12 = wx.StaticText(win, pos=(300, 115), label='最大迭代次数:')
+        self.maxitertest = wx.TextCtrl(win, wx.ID_ANY, value="-1",pos=(440, 110), size=(100, 20))
 
-        text12 = wx.StaticText(win, pos=(300, 145), label='最大迭代次数:')
-        self.maxitertest = wx.TextCtrl(win, wx.ID_ANY, value="-1",pos=(440, 140), size=(100, 20))
-
-        oneButton = wx.Button(win, -1, u'确定', pos=(110, 250), size=(120, 40))
+        oneButton = wx.Button(win, -1, u'确定', pos=(110, 200), size=(120, 40))
         oneButton.SetBackgroundColour('white')
         oneButton.SetForegroundColour(self.themeColor)
         # 为【确定Button】绑定事件
         self.Bind(wx.EVT_BUTTON, self.oneEvent, oneButton)
 
-        twoButton = wx.Button(win, -1, u'取消', pos=(290, 250), size=(120, 40))
+        twoButton = wx.Button(win, -1, u'取消', pos=(290, 200), size=(120, 40))
         twoButton.SetBackgroundColour('white')
         twoButton.SetForegroundColour(self.themeColor)
         # 为【取消Button】绑定事件
@@ -69,6 +71,7 @@ class From3(wx.Frame):
             if self.gamma == -1.0:
                 self.gamma = "auto"
             self.coef0 = float(self.coef0text.GetValue())
+            '''
             if self.probatext.GetValue() == "否":
                 self.probability = False
             else:
@@ -77,6 +80,7 @@ class From3(wx.Frame):
                 self.shrinking = False
             else:
                 self.shrinking = True
+            '''
             self.tol = float(self.toltext.GetValue())
             self.cache_size = float(self.cachesizetext.GetValue())
             self.max_iter = int(self.maxitertest.GetValue())
@@ -90,8 +94,10 @@ class From3(wx.Frame):
             Data.degree = self.degree
             Data.gamma = self.gamma
             Data.coef0 = self.coef0
+            '''
             Data.probability = self.probability
             Data.shrinking = self.shrinking
+            '''
             Data.tol = self.tol
             Data.cache_size = self.cache_size
             Data.max_iter = self.max_iter
